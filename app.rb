@@ -1,50 +1,64 @@
 class World
 	def initialize()
-		# @life_array = Array.new(width) { Array.new(height) }
+
 	end
 
-	def buildEmptyMatrix
+	def beginWorld
 		world = ""
-		f = []
-
-
-
+		@m = []
 
 		100.times do |x|
-
-			f[x] = []
+			@m[x] = []
 
 			100.times do |y|
-				f[x][y] = 0
-				world += 0.to_s
+				@m[x][y] = 0
+				world += y.to_s
 			end
 
 			world += "\n"
-		
-
-
 		end
 
-		print world
-
-		# @life_array = [ [ 0,0,0 ],
-		# 				[ 0,0,0 ], 
-		# 				[ 0,0,0 ] ]								]
+		
 	end
 
+	def nextFrame
+		#iterate through each element and determine
+		# whether cell is dead or alive
+
+		# score = #{f[x-1][y-1]} + #{f[x][y-1]} + 
+		# 		  #{f[x+1][y-1]} + #{f[x-1][y]} + #{f[x+1][y]} +
+		# 		  #{f[x-1][y+1]} + #{f[x][y+1]} + #{f[x+1][y+1]}
+		@m.each do |x|
+			x.each do |y|		
+				# if y == 1
+				# 	if score < 2
+				# 		y = 0
+				# 	elsif score > 3
+				# 		y = 0
+				# 	else
+				# 		y = 1
+				# 	end
+				# end
+
+				# if y == 0 && score = 3
+				# 	y = 1
+				# end
+			end
+		end
+	end
 end
 
 
 class Cell < World
+	def dead
 
+	end
+
+	def alive
+
+	end
 end
 
 w1 = World.new 
-w1.buildEmptyMatrix()
-
-
-
-
-
-
-
+w1.beginWorld
+w1.nextFrame()

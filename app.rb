@@ -51,28 +51,11 @@ class World
 		#iterate through each element and determine
 		# whether cell is dead or alive
 
-		# score = #{f[x-1][y-1]} + #{f[x][y-1]} + 
-		# 		  #{f[x+1][y-1]} + #{f[x-1][y]} + #{f[x+1][y]} +
-		# 		  #{f[x-1][y+1]} + #{f[x][y+1]} + #{f[x+1][y+1]}
 		@m.each do |x|
 			x.each do |y|
 				if y == 1
 
 				end
-					
-				# if y == 1
-				# 	if score < 2
-				# 		y = 0
-				# 	elsif score > 3
-				# 		y = 0
-				# 	else
-				# 		y = 1
-				# 	end
-				# end
-
-				# if y == 0 && score = 3
-				# 	y = 1
-				# end
 			end
 		end
 	end
@@ -89,6 +72,20 @@ class Cell
 	def update_life(matrix)
 		matrix[@x][@y]
 		# depending on score, set @life to true or false
+		score = matrix[@x-1][@y-1] + matrix[@x][@y-1] + matrix[@x+1][@y-1] + matrix[@x-1][@y] + matrix[@x+1][@y] + matrix[@x-1][@y+1] + matrix[@x][@y+1] + matrix[@x+1][@y+1]
+		if score < 2
+			@life = false
+			#matrix[@x][@y] = 0
+		elsif score > 3
+			@life = false
+			#matrix[@x][@y] = 0
+		elsif score == 3
+			@life = true
+			#matrix[@x][@y] = 1
+		else
+			@life = true
+			#matrix[@x][@y] = 1
+		end
 	end
 
 	def alive?

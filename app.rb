@@ -36,11 +36,12 @@ class World
 
 	def update_matrix
 		new_world = new_matrix()
-		@main_world.each do |x|
-			x.each do |y|
-				@main_world.update_life(@main_world)
-				@main_world[x][y].alive?
-				new_world[x][y] = @main_world[x][y]
+		@main_world.each_with_index do |row, x|
+			row.each_with_index do |column, y|
+				cell = @main_world[x][y]
+				cell.update_life(@main_world)
+				cell.alive?
+				new_world[x][y] = cell
 			end
 		end
 		@main_world = new_world
@@ -96,5 +97,9 @@ w1.begin_world()
 # of the new_matrix method to it, which is just a 100x100 multi-
 # dimensional array. Update_matrix then iterates over each row by iterating
 # over each item in the array, where each item is also an array, so it then
-# iterates over this inner array. 
+# iterates over this inner array. I then call the method update_life on the
+# @main_world instance variable, and I don't need to pass the x and y
+# coordinates because when we instantiated a Cell class instance, the x and
+# y coordinates are set to corresponding instance variables in the initialize
+# method.
 w1.nextFrame()
